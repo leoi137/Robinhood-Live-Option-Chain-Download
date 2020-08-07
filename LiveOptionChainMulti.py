@@ -115,15 +115,13 @@ class SetupAndRecord:
     #         if make_files_and_columns:
     #             self.create_files_and_columns(s)
 
-    def get_option_chain(self, symbol):
+     def get_option_chain(symbol):
 
         """
         This returns the option chain id and an array of the expiration dates
         """
-        
-        md = StockMarketdata.quote_by_symbol(self.client, symbol)
-        stock_id = md['instrument'].split('/')[-2]
-        option_chain = OptionChain.fetch(self.client, stock_id, symbol)
+        stock_id = StockMarketdata.quote_by_symbol(client, symbol)['instrument'].split('/')[-2]
+        option_chain = OptionChain.fetch(client, stock_id, symbol)
         option_chain_id = option_chain["id"]
         expiration_dates = option_chain['expiration_dates']
         
